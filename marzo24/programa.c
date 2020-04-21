@@ -3,7 +3,7 @@
 #include <string.h>
 
 typedef struct persona{
-    char nombre[ 15 ];
+    char nombre[ 15 ]; // Luisa: no estas usando en tu programa el nombre 
     int dia, mes, agnio;
 }persona;
 
@@ -24,3 +24,4 @@ int menu(){
    
 }
 
+// Creo que falta el resto...
