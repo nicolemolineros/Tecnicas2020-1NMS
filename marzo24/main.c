@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Podrías mejorar la organización del código para evitar espacios vacios y 
+dejar bn la parte de identación 
+Falta la parte de la recursión y el uso de enums*/
+
 enum mesAn{Ene = 1, Feb, Mar, Abr, May, Jun, Jul,  
           Ago, Sep, Oct, Nov, Dec};
 
