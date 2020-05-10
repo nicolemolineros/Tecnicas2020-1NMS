@@ -1,0 +1,24 @@
+   * Selection Sort  *    
+Elementos en el arreglo: 10
+Tiempo Inicial: 0.00 segundos
+Tiempo Empleado: 0.00 segundos
+   * Selection Sort  *    
+Elementos en el arreglo: 100
+Tiempo Inicial: 0.00 segundos
+Tiempo Empleado: 0.00 segundos
+   * Selection Sort  *    
+Elementos en el arreglo: 1000
+Tiempo Inicial: 0.00 segundos
+Tiempo Empleado: 0.00 segundos
+   * Selection Sort  *    
+Elementos en el arreglo: 10000
+Tiempo Inicial: 0.00 segundos
+Tiempo Empleado: 0.00 segundos
+   * Selection Sort  *    
+Elementos en el arreglo: 100000
+Tiempo Inicial: 0.00 segundos
+Tiempo Empleado: 19.00 segundos
+   * Selection Sort  *    
+Elementos en el arreglo: 1000000
+Tiempo Inicial: 0.00 segundos
+Tiempo Empleado: 1586.00 segundos
