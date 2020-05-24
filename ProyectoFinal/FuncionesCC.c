@@ -145,7 +145,7 @@ int contarLocalesDisponibles( int numPisos, int numLocales, int i, int j, int co
 	   contador++;
 	}
 	   j++;
-  contarLocalesDisponibles( numPisos, numLocales, i, j, contador, centroComercial );
+  return contarLocalesDisponibles( numPisos, numLocales, i, j, contador, centroComercial );
 
 }
 
