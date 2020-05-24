@@ -2,10 +2,16 @@
 #include <stdio.h>
 
 
-int main(){
-
-int opcion, numPiso, numLocal, i, j, deudita;
-local_t ** centroComercial;
+int main( ){
+   int opcion, numPisos, numLocales, i, j, contador;
+   local_t ** centroComercial;
+   printf( "Ingresa el numero de pisos para tu Centro Comercial\n" );
+   scanf("%d", &numPisos);
+   printf( "Ingresa el numero de locales por piso para tu Centro Comercial\n" );
+   scanf("%d", &numLocales);
+   centroComercial = disenarCentroComercial(&numPisos, &numLocales);
+   printf("Has diseñado tu centro comercial con exito! En el menú podrás administrar tu centro comercial\n");
+   
    
    do{
       
@@ -13,41 +19,32 @@ local_t ** centroComercial;
       switch(opcion){
          
          case 1:
-            disenarCentroComercial( numPiso, numLocal );
+            agregarLocal( numPisos, numLocales, centroComercial);
             break;
          
          case 2:
-            agregarLocal( numPiso, numLocal, centroComercial);
+            mostrarLocales( numPisos, numLocales, centroComercial );
             break;
-         
+
          case 3:
-            mostrarLocales( centroComercial, numPiso, numLocal );
+            eliminarLocal( numPisos, numLocales,centroComercial );
             break;
 
          case 4:
-            eliminarLocal( centroComercial, numPiso, numLocal);
+            cambiarNombreLocal( centroComercial, numPisos, numLocales );
             break;
 
          case 5:
-            cambiarNombreLocal( centroComercial, numPiso, numLocal );
+            verLocalesSinArrendar( centroComercial, numPisos, numLocales );
             break;
 
          case 6:
-            verLocalesSinDeuda( centroComercial, numPiso, numLocal );
-            break;
-
-         case 7:
-            contarLocalesDeuda( centroComercial, numPiso, numLocal, i, j, deudita );
+            contarLocalesDisponibles( numPisos, numLocales, i, j, contador, centroComercial );
             break;
 
       }
-
-   printf( "Desea volver a ingresar al menú? SI <S> NO <NO> \n" );
-   scanf( "%d", &opcion);
    
    }while(opcion!= 7);
-
-
 
 	return 0;
 }
