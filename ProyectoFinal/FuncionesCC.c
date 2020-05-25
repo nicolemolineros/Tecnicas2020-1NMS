@@ -9,10 +9,11 @@ local_t ** disenarCentroComercial( int * numPiso, int * numLocal ){
    }
       for( i = 0; i < * numPiso; i++ ){
 	      for( j = 0; j < * numLocal; j++ ){
-			local_t local;
-         	local.vacio = 1;
-			local.idLocal = rand();
-			centroComercial[ i ][ j ] = local;
+			local_t Local;
+			Local.vacio = DISPONIBLE;
+			Local.idLocal = rand();
+			centroComercial[ i ][ j ] = Local;
+			
 		}
 	}
 	return centroComercial;
@@ -28,11 +29,11 @@ void agregarLocal( int numPiso, int numLocal, local_t ** centroComercial ){
 	}while(piso < 0 || piso >= numPiso);
 		
 	do{
-	  printf("Ingrese la ubicación del local "); 
+	  printf("Ingrese la ubicación del local: "); 
       scanf( "%d", &local );
 		if( centroComercial[piso][local].vacio == NODISPONIBLE )
 			printf( "Ubicación escogida no disponible\n" );
-	}while( local < 0 || local >= numLocal ||centroComercial[piso][local].vacio == DISPONIBLE );
+	}while( local < 0 || local >= numLocal || centroComercial[piso][local].vacio == NODISPONIBLE );
 	
 	centroComercial[piso][local].numPisoLocal = piso;
 	centroComercial[piso][local].numLocalxPiso = local;
@@ -68,17 +69,17 @@ void eliminarLocal(int numPiso, int numLocal, local_t ** centroComercial){
 		printf("Ingrese el piso del local que desea eliminar: \n"); 
 		scanf("%d", &piso);
 		if(piso > numPiso || piso < 0)
-			printf( "Verifique los datos, el max es :%d\n", numPiso );
+			printf( "Verifique los datos, el max es :%d\n", numPiso - 1 );
 	}while(piso < 0 || piso >= numPiso);
 		
 	do{
 		printf( "Ingrese el número del local: "); 
 		scanf("%d", &local);
 		if(local > numLocal || local < 0)
-			printf("Verifique los datos, el max es: %d\n", numLocal );
+			printf("Verifique los datos, el max es: %d\n", numLocal - 1 );
 	}while(local < 0 || local >= numLocal );
 	centroComercial[piso][local].vacio = DISPONIBLE;
-	printf("El local que antes ocupaba ID: %d ahora se encuentra disponible\n",centroComercial[piso][local].idLocal );
+	printf("El local que antes ocupaba: %s ahora se encuentra disponible\n",centroComercial[piso][local].nombreLocal );
 	printf("=====================================================================\n");
 	return;
 }
@@ -90,17 +91,17 @@ do{
 	printf("Ingrese el piso del local que desea eliminar: "); 
 	scanf("%d", &nPiso);
 	if(nPiso > numPiso || nPiso < 0)
-		printf("Verifique los datos, el max es: %d\n", numPiso);
+		printf("Verifique los datos, el max es: %d\n", numPiso-1);
 	}while(nPiso < 0 || nPiso >= numPiso);
 		
 	do{
 		printf("Numero de local: "); scanf("%d", &nLocal);
 		if(nLocal > numLocal || nLocal < 0)
-		printf("Verifique los datos, el max es: %d\n", numLocal);
+		printf("Verifique los datos, el max es: %d\n", numLocal-1);
 	}while(nLocal < 0 || nLocal >= numLocal);
 	
 	if(centroComercial[nPiso][nLocal].vacio == DISPONIBLE){
-		printf("Este local no ha sido arrendado\n");
+		printf("Este local no ha sido ocupado aún\n");
 		return;
 	}
 	strcmp(nombre, centroComercial[nPiso][nLocal].nombreLocal);
@@ -130,14 +131,14 @@ void verLocalesSinArrendar(local_t ** centroComercial, int numPiso, int numLocal
 	return;
 }
 
-int contarLocalesDisponibles( int numPisos, int numLocales, int i, int j, int contador, local_t ** centroComercial){
+int contarLocalesDisponibles( int numPiso, int numLocal, int i, int j, int contador, local_t ** centroComercial ){
 
-   if( i == numPisos ){
+   if( i == numPiso ){
         i = 0;
 		j++;
 	}
 
-   if(j == numPisos){
+   if(j == numLocal){
 		return contador;
 	}
 		 
@@ -145,8 +146,48 @@ int contarLocalesDisponibles( int numPisos, int numLocales, int i, int j, int co
 	   contador++;
 	}
 	   j++;
-  return contarLocalesDisponibles( numPisos, numLocales, i, j, contador, centroComercial );
+return contarLocalesDisponibles( numPiso, numLocal, i, j, contador, centroComercial );
 
+}
+void agregarStockALocal(int numPiso, int numLocal, local_t ** centroComercial ){
+	int nPiso, nLocal, cantiStock, tipo, opc;
+	stock_t nStock;
+	do{
+	printf("Ingrese el piso del local que desea agregar stock: "); 
+	scanf("%d", &nPiso);
+	if(nPiso > numPiso || nPiso < 0)
+		printf("Verifique los datos, el max es: %d\n", numPiso-1);
+	}while(nPiso < 0 || nPiso >= numPiso);
+		
+	do{
+		printf("Numero de local: "); scanf("%d", &nLocal);
+		if(nLocal > numLocal || nLocal < 0)
+		printf("Verifique los datos, el max es: %d\n", numLocal-1);
+	}while(nLocal < 0 || nLocal >= numLocal);
+	
+	if(centroComercial[nPiso][nLocal].vacio == NODISPONIBLE){
+		printf("Este local no ha sido puesto en uso\n");
+		return;
+	}
+	centroComercial[nPiso][nLocal].stockLocal++;
+	cantiStock = centroComercial[nPiso][nLocal].stockLocal;
+	do{
+		printf( "Seleccione la opcion que desea agregar\n" );
+		printf("[1] ROPA  / [2] CALZADO / [3] JOYAS \n"); 
+		scanf( "%d", &opc );
+		if( opc == 1 ){
+			centroComercial[nPiso][nLocal].tipo = ROPA;
+		}else if( opc == 2 ){
+			centroComercial[nPiso][nLocal].tipo = ZAPATOS;
+		}else if( opc == 3 ){
+			centroComercial[nPiso][nLocal].tipo = JOYAS;
+		}else{
+			printf("Selección invalida!\n");
+		}
+	}while( opc != 1 && opc != 2 && opc != 3 );
+	
+	printf("Se agregó [%d] al local correctamente \n", centroComercial[nPiso][nLocal].tipo );
+	printf("=====================================================================\n");
 }
 
 int menu(){
@@ -160,7 +201,8 @@ int menu(){
    printf( "[4] Cambiar nombre \n" );
    printf( "[5] Locales sin arrendar \n" );
    printf( "[6] Contar locales \n" );
-   printf( "[7] Salir \n" );
+   printf( "[7] Agregar stock \n" );
+   printf( "[8] Salir \n" );
    printf( "Digite su opción por favor \n" );
    printf("==>");
    scanf( "%d", &opcion );

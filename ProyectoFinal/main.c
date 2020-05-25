@@ -41,10 +41,11 @@ int main( ){
          case 6:
             contarLocalesDisponibles( numPisos, numLocales, i, j, contador, centroComercial );
             break;
-
+         case 7:
+         agregarStockALocal( numPisos, numLocales, centroComercial );
       }
    
-   }while(opcion!= 7);
+   }while(opcion!= 8);
 
 	return 0;
 }
