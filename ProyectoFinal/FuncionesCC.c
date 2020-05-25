@@ -84,11 +84,11 @@ void eliminarLocal(int numPiso, int numLocal, local_t ** centroComercial){
 	return;
 }
 
-void cambiarNombreLocal(local_t ** centroComercial, int numPiso, int numLocal){
+void cambiarNombreLocal( int numPiso, int numLocal, local_t ** centroComercial ){
    int nPiso, nLocal;
    char nombre[35];
 do{
-	printf("Ingrese el piso del local que desea eliminar: "); 
+	printf("Ingrese el piso del local que desea cambiar el nombre: "); 
 	scanf("%d", &nPiso);
 	if(nPiso > numPiso || nPiso < 0)
 		printf("Verifique los datos, el max es: %d\n", numPiso-1);
@@ -112,7 +112,7 @@ do{
 
 }
 
-void verLocalesSinArrendar(local_t ** centroComercial, int numPiso, int numLocal){
+void verLocalesSinArrendar( int numPiso, int numLocal, local_t ** centroComercial){
    
    int i, j;
 	
@@ -149,11 +149,11 @@ int contarLocalesDisponibles( int numPiso, int numLocal, int i, int j, int conta
 return contarLocalesDisponibles( numPiso, numLocal, i, j, contador, centroComercial );
 
 }
-void agregarStockALocal(int numPiso, int numLocal, local_t ** centroComercial ){
+void definirStockALocal(int numPiso, int numLocal, local_t ** centroComercial ){
 	int nPiso, nLocal, cantiStock, tipo, opc;
 	stock_t nStock;
 	do{
-	printf("Ingrese el piso del local que desea agregar stock: "); 
+	printf("Ingrese el piso del local que desea definir stock: "); 
 	scanf("%d", &nPiso);
 	if(nPiso > numPiso || nPiso < 0)
 		printf("Verifique los datos, el max es: %d\n", numPiso-1);
@@ -182,11 +182,11 @@ void agregarStockALocal(int numPiso, int numLocal, local_t ** centroComercial ){
 		}else if( opc == 3 ){
 			centroComercial[nPiso][nLocal].tipo = JOYAS;
 		}else{
-			printf("Selección invalida!\n");
+			printf("No es valida la opción!\n");
 		}
 	}while( opc != 1 && opc != 2 && opc != 3 );
 	
-	printf("Se agregó [%d] al local correctamente \n", centroComercial[nPiso][nLocal].tipo );
+	printf("El local [%s] se definió para vender [%d] \n", centroComercial[nPiso][nLocal].nombreLocal, centroComercial[nPiso][nLocal].tipo+1 );
 	printf("=====================================================================\n");
 }
 
@@ -197,8 +197,8 @@ int menu(){
    printf( "============================\n" );
    printf( "[1] Agregar local nuevo\n" );
    printf( "[2] Mostrar locales en uso\n" );
-   printf( "[3] Eliminar local \n" );
-   printf( "[4] Cambiar nombre \n" );
+   printf( "[3] Cambiar nombre del local \n" );
+   printf( "[4] Eliminar local \n" );
    printf( "[5] Locales sin arrendar \n" );
    printf( "[6] Contar locales \n" );
    printf( "[7] Agregar stock \n" );

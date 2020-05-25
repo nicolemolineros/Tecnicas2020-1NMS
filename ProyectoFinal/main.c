@@ -27,22 +27,23 @@ int main( ){
             break;
 
          case 3:
-            eliminarLocal( numPisos, numLocales,centroComercial );
+            cambiarNombreLocal( numPisos, numLocales, centroComercial );
             break;
 
          case 4:
-            cambiarNombreLocal( centroComercial, numPisos, numLocales );
+            eliminarLocal( numPisos, numLocales, centroComercial );
+           
             break;
 
          case 5:
-            verLocalesSinArrendar( centroComercial, numPisos, numLocales );
+            verLocalesSinArrendar( numPisos, numLocales, centroComercial );
             break;
 
          case 6:
             contarLocalesDisponibles( numPisos, numLocales, i, j, contador, centroComercial );
             break;
          case 7:
-         agregarStockALocal( numPisos, numLocales, centroComercial );
+            definirStockALocal( numPisos, numLocales, centroComercial );
       }
    
    }while(opcion!= 8);
