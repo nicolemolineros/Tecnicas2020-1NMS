@@ -261,9 +261,9 @@ void ms(int a[], int low, int high){
 
 void mergeSort(int a[], int lenght){
 	ms(a, 0, lenght - 1);
-	
+	int i;
 	for (i = 0; i <= lenght; i++) 
-        printf("%d ", arr[i]); 
+        printf("%d ", a[i]); 
     printf("\n");
 }
 void ordenarIdLocal(local_t ** centroComercial, int arreglo[], int pisoOrdenado, int numLocal ){
@@ -271,7 +271,7 @@ void ordenarIdLocal(local_t ** centroComercial, int arreglo[], int pisoOrdenado,
 	
 	printf("Que piso quiere ordenar? \n ");
 	scanf("%d", &pisoOrdenado);
-	for( i = 0; i < numLocal; i++){
+	for( i = 1; i < numLocal; i++){
 		arreglo[ aux ] = centroComercial[ pisoOrdenado ][ i ].idLocal;
 		printf(".");
 	}
@@ -400,7 +400,7 @@ int menu(){
    printf( "[6] Contar locales \n" );
    printf( "[7] Agregar stock \n" );
    printf( "[8] Agregar deuda \n" );
-   printf( "[9] Ordenar ID Local");
+   printf( "[9] Ordenar ID Local \n");
    printf( "[10] Merge Sort \n" );
    printf( "[11] Quick Sort \n" ); 
    printf( "[12] Insertion Sort \n" );
