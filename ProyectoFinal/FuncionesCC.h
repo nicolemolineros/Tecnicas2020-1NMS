@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 //Local 
 typedef struct Local{
@@ -24,15 +25,6 @@ typedef struct Stock{
 	int stock;
 }stock_t;
 
-typedef struct Empleados{
-	char nombre[35];
-	int cc; //cc = cedula de ciudadnia
-	int edad;
-	int correo;
-	int numContacto;
-}empleado_t;
-
-
 enum disponibilidad { DISPONIBLE = 0, NODISPONIBLE = 1};
 typedef enum tipoDeStock{ROPA, ZAPATOS, JOYAS} stocks_e;
 enum deuda {DEUDA, NODEUDA};
@@ -46,7 +38,17 @@ void verLocalesSinArrendar( int numPiso, int numLocal, local_t ** centroComercia
 int contarLocalesDisponibles( int numPiso, int numLocal, int i, int j, int contador, local_t ** centroComercial );
 void definirStockALocal( int numPiso, int numLocal,local_t ** centroComercial );
 void marcarLocalEnDeuda(int numPiso, int numLocal, local_t ** centroComercial);
-void guardarCentroComercial( local_t * centro, char * archivo );
-int archivoExistente( local_t * centro, char * archivo );
+void merge(int a[], int left_low, int left_high, int right_low, int right_high);
+void mergeSort(int a[], int lenght);
+void ms(int a[], int low, int high);
+void qs( int lista[ ], int limite_izq, int limite_der );
+void Quicksort( int arreglo[ ], int n );
+void insertionSort(int arr[], int n);
+int burbuja(int arreglo[], int n);
+int bubbleSort(int arreglo[], int n);
+void ordenarIdLocal( local_t ** centroComercial, int arreglo[], int pisoOrdenado, int numLocal );
+void guardarCentroComercial( local_t ** CentroComercial, char * archivo );
+int archivoExistente( local_t ** centroComercial, char * archivo );
+
 int menu( );
 #endif /* FUNCIONESCC_H_ */
