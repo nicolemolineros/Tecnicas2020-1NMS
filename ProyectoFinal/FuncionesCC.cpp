@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdexcept>
 #include "FuncionesCC.h"
 
 local_t ** disenarCentroComercial( int * numPiso, int * numLocal ){
@@ -25,14 +26,14 @@ void agregarLocal( int numPiso, int numLocal, local_t ** centroComercial){
       printf( "Ingrese el piso del local: " ); 
       scanf( "%d", &piso );
 		if( piso > numPiso || piso < 0 )
-	  	printf( "Intente nuevamente. El numero de pisos es :%d\n", numPiso - 1 );
+	  	throw std::logic_error( "Intente nuevamente. El numero de pisos es :%d\n", numPiso - 1 );
 	}while(piso < 0 || piso >= numPiso);
 		
 	do{
 	  printf("Ingrese la ubicación del local "); 
       scanf( "%d", &local );
 		if( centroComercial[piso][local].vacio == NODISPONIBLE )
-			printf( "Ubicación escogida no disponible\n" );
+			throw std::logic_error( "Ubicación escogida no disponible\n" );
 	}while( local < 0 || local >= numLocal ||centroComercial[piso][local].vacio == DISPONIBLE );
 	
 	centroComercial[piso][local].numPisoLocal = piso;
@@ -69,14 +70,14 @@ void eliminarLocal(int numPiso, int numLocal, local_t ** centroComercial){
 		printf("Ingrese el piso del local que desea eliminar: \n"); 
 		scanf("%d", &piso);
 		if(piso > numPiso || piso < 0)
-			printf( "Verifique los datos, el max es :%d\n", numPiso - 1 );
+			throw std::logic_error( "Verifique los datos, el max es :%d\n", numPiso - 1 );
 	}while(piso < 0 || piso >= numPiso);
 		
 	do{
 		printf( "Ingrese el número del local: "); 
 		scanf("%d", &local);
 		if(local > numLocal || local < 0)
-			printf("Verifique los datos, el max es: %d\n", numLocal - 1 );
+			throw std::logic_error("Verifique los datos, el max es: %d\n", numLocal - 1 );
 	}while(local < 0 || local >= numLocal );
 	centroComercial[piso][local].vacio = DISPONIBLE;
 	printf("El local que antes ocupaba: %s ahora se encuentra disponible\n",centroComercial[piso][local].nombreLocal );
@@ -91,17 +92,17 @@ do{
 	printf("Ingrese el piso del local que desea cambiar el nombre: "); 
 	scanf("%d", &nPiso);
 	if(nPiso > numPiso || nPiso < 0)
-		printf("Verifique los datos, el max es: %d\n", numPiso-1);
+		throw std::logic_error("Verifique los datos, el max es: %d\n", numPiso-1);
 	}while(nPiso < 0 || nPiso >= numPiso);
 		
 	do{
 		printf("Numero de local: "); scanf("%d", &nLocal);
 		if(nLocal > numLocal || nLocal < 0)
-		printf("Verifique los datos, el max es: %d\n", numLocal-1);
+		throw std::logic_error("Verifique los datos, el max es: %d\n", numLocal-1);
 	}while(nLocal < 0 || nLocal >= numLocal);
 	
 	if(centroComercial[nPiso][nLocal].vacio == DISPONIBLE){
-		printf("Este local no ha sido ocupado aún\n");
+		throw std::logic_error("Este local no ha sido ocupado aún\n");
 		return;
 	}
 	strcmp(nombre, centroComercial[nPiso][nLocal].nombreLocal);
@@ -153,14 +154,14 @@ void definirStockALocal(int numPiso, int numLocal, local_t ** centroComercial ){
 	printf("Ingrese el piso del local que desea definir stock: "); 
 	scanf("%d", &nPiso);
 	if(nPiso > numPiso || nPiso < 0)
-		printf("Verifique los datos, el max es: %d\n", numPiso-1);
+		throw std::logic_error("Verifique los datos, el max es: %d\n", numPiso-1);
 	}while(nPiso < 0 || nPiso >= numPiso);
 		
 	do{
 		printf("Numero de local: "); 
 		scanf("%d", &nLocal);
 		if(nLocal > numLocal || nLocal < 0)
-		printf("Verifique los datos, el max es: %d\n", numLocal-1);
+		throw std::logic_error("Verifique los datos, el max es: %d\n", numLocal-1);
 	}while(nLocal < 0 || nLocal >= numLocal);
 	
 	if(centroComercial[nPiso][nLocal].vacio == NODISPONIBLE){
@@ -180,7 +181,7 @@ void definirStockALocal(int numPiso, int numLocal, local_t ** centroComercial ){
 		}else if( opc == 3 ){
 			centroComercial[nPiso][nLocal].tipo = JOYAS;
 		}else{
-			printf("No es valida la opción!\n");
+			throw std::logic_error("No es valida la opción!\n");
 		}
 	}while( opc != 1 && opc != 2 && opc != 3 );
 	
@@ -195,13 +196,13 @@ void marcarLocalEnDeuda(int numPiso, int numLocal, local_t ** centroComercial){
 	printf("Ingrese el piso del local que desea añadir deuda: "); 
 	scanf("%d", &nPiso);
 	if(nPiso > numPiso || nPiso < 0)
-		printf("Verifique los datos, el max es: %d\n", numPiso-1);
+		throw std::logic_error("Verifique los datos, el max es: %d\n", numPiso-1);
 	}while(nPiso < 0 || nPiso >= numPiso);
 		
 	do{
 		printf("Numero de local: "); scanf("%d", &nLocal);
 		if(nLocal > numLocal || nLocal < 0)
-		printf("Verifique los datos, el max es: %d\n", numLocal-1);
+		throw std::logic_error("Verifique los datos, el max es: %d\n", numLocal-1);
 	}while(nLocal < 0 || nLocal >= numLocal);
 	
 	if(centroComercial[nPiso][nLocal].vacio == DISPONIBLE){
