@@ -29,19 +29,26 @@ Se implementa un ciclo anidado.
 No retorna nada ya que se borra.
 
 5- cambiarNombreLocal(local_t ** centroComercial, int numPiso, int numLocal)
-==> Esta función permite cambiar el nombre de un local, verificando que no esté en deuda.
-Recibe el tamaño del centro comecial (cadalocal).
-Cambia el nombre de un local siempre y cuando no presente deuda.
-Se usa enums
+==> Esta función permite cambiar el nombre de un local.
+Recibe el tamaño del centro comecial (cada local).
+Cambia el nombre de un local siempre y cuando esté en uso.
 
-6- verLocalesSinDeuda(local_t ** centroComercial, int numPiso, int numLocal)
-==> Esta función permite visualizar en pantalla todos los locales que no presentan deuda.
+6- verLocalesDisponibles(local_t ** centroComercial, int numPiso, int numLocal)
+==> Esta función permite visualizar en pantalla todos los locales que están disponibles.
 Recibe el tamaño del centro comecial (cada local).
 Se hace uso de parámetros por referencia y valor.
 Se usan ciclos anidados.
 
-7- contarLocalesDeuda(local_t ** centroComercial, int numPisos, int numLocales, int i, int j, int deudita)
+7- definirStockAlLocal(int numPiso, int numLocal, local_t ** centroComercial )
+==> Esta función permite definir que se va a vender en cada local; eligiendo entre vender ropa, zapatos o si es un restaurante.Se hace uso de parámetros por referencia y valor. 
+Se usa enums.
+
+8- marcarLocalEnDeuda(local_t ** centroComercial, int numPisos, int numLocales, int i, int j, int deudita)
 ==> Esta función permite contar todos los locales que presentan deuda.
 Recibe el tamaño del centro comecial (cada local).
 Se hace uso de recursión.
 Se hace uso de enums.
+
+NEW:
+Se hace uso de algoritmos de ordenamiento. Se implementan archivos.
+Se corrigen funciones que no servian en en la primera enterga.
